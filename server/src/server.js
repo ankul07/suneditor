@@ -1,45 +1,24 @@
 import path from "path";
 import dotenv from "dotenv";
+
+// Environment setup
 if (process.env.NODE_ENV !== "PRODUCTION") {
   dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 }
+
 import app from "./app.js";
 import connectDatabase from "./config/db.js";
 
-/**
- * Load environment variables from .env file in non-production environments
- */
-
-/**
- * Handle uncaught exceptions (e.g., synchronous code errors that aren't caught)
- */
-process.on("uncaughtException", (err) => {
-  console.log(`Error: ${err.message}`);
-  console.log("Shutting down the server due to an uncaught exception");
-  process.exit(1); // Exit process with failure code
-});
-
-/**
- * Connect to MongoDB database
- */
+// Connect to database
 connectDatabase();
 
-/**
- * Start the Express server
- */
-const server = app.listen(process.env.PORT, () => {
-  console.log(`✓ Server is running on http://localhost:${process.env.PORT}`);
-});
+// For Vercel serverless
+export default app;
 
-/**
- * Handle unhandled promise rejections (e.g., failed database connections)
- */
-process.on("unhandledRejection", (err) => {
-  console.log(`Shutting down the server due to: ${err.message}`);
-  console.log("Shutting down the server due to an unhandled promise rejection");
-
-  // Gracefully close the server before exiting
-  server.close(() => {
-    process.exit(1); // Exit process with failure code
+// For local development
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`✓ Server running on http://localhost:${PORT}`);
   });
-});
+}
