@@ -8,7 +8,9 @@
     {
       "src": "client/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": { 
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
@@ -17,12 +19,17 @@
       "dest": "server/src/server.js"
     },
     {
-      "src": "/api",
-      "dest": "server/src/server.js"
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "dest": "client/dist/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "client/dist/$1"
+      "dest": "client/dist/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "server/src/server.js": {
+      "maxDuration": 30
+    }
+  }
 }

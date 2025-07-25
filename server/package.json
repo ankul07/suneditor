@@ -7,10 +7,6 @@
     "dev": "nodemon .",
     "start":"node src/server.js"
   },
-  "engines": {
-    "node": "22.x",
-    "npm": "11.x"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
