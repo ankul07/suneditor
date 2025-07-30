@@ -54,18 +54,8 @@ app.get("/api/health", (req, res) => {
 });
 
 // API test route
-app.get("/api/*", (req, res) => {
-  res.status(404).json({
-    message: "API endpoint not found",
-    path: req.path,
-    availableEndpoints: [
-      "/api/health",
-      "/api/",
-      "/api/v1/auth/*",
-      "/api/v1/user/*",
-      "/api/v1/blog/*",
-    ],
-  });
+app.get("/api/", (req, res) => {
+  res.json({ message: "Backend Running Successfully!" });
 });
 
 // Routes import

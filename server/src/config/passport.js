@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/user.schema.js";
-// console.log(process.env.GOOGLE_CLIENT_ID);
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 // Google OAuth Strategy (ONLY FOR GOOGLE AUTHENTICATION)
 passport.use(
