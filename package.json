@@ -2,11 +2,11 @@
   "name": "wyswyg-rich-editor-suneditor",
   "version": "1.0.0",
   "description": "",
-  "main": "server/src/server.js",
+  "main": "server/src/index.js",
   "type": "module",
   "scripts": {
     "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
-    "start": "node server/src/server.js",
+    "start": "node server/src/index.js",
     "dev": "npm run dev --prefix server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
