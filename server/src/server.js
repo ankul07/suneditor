@@ -12,6 +12,18 @@ import connectDatabase from "./config/db.js";
 // Connect to database
 connectDatabase();
 
+// Make sure to put this AFTER all API routes
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "PRODUCTION"
+) {
+  app.use(express.static(path.join(__dirname, "../../client/dist")));
+
+  app.get("*", (req, res) => {
+    return res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
+  });
+}
+
 // For Vercel serverless
 export default app;
 

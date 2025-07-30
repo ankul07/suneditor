@@ -16,7 +16,6 @@ const app = express();
 const allowedOrigins = [
   process.env.CLIENT_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
-  "http://localhost:3000",
   "http://localhost:5173",
 ].filter(Boolean);
 
